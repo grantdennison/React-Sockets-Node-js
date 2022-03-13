@@ -21,13 +21,13 @@ let interval;
 
 io.on("connection", (socket) => {
   socket.join("Grants room"); //specify room
-  console.log(`New client connected ${interval}`);
   if (interval) {
     clearInterval(interval);
   }
   interval = setInterval(() => getApiAndEmit(socket), 1000);
-  console.log(socket.rooms);
-  console.log(socket.id); //socket id
+  console.log(`New client connected ${interval}`);
+  // console.log(socket.rooms);
+  // console.log(socket.id); //socket id
   socket.on("disconnect", () => {
     console.log(`Client disconnected ${interval}`);
     // clearInterval(interval);
