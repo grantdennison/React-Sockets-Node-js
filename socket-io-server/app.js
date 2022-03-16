@@ -17,6 +17,7 @@ const io = socketIo(server, {
   },
 });
 
+let countAll = 0;
 let interval;
 
 io.on("connection", (socket) => {
@@ -28,11 +29,21 @@ io.on("connection", (socket) => {
   console.log(`New client connected ${interval}`);
   // console.log(socket.rooms);
   // console.log(socket.id); //socket id
+  socket.on("PushCount", (count) => {
+    globalCount(count);
+  });
+  io.emit("GlobalCount", countAll);
+
   socket.on("disconnect", () => {
     console.log(`Client disconnected ${interval}`);
     // clearInterval(interval);
   });
 });
+
+const globalCount = (count = 0) => {
+  countAll += count;
+  io.emit("GlobalCount", countAll);
+};
 
 const getApiAndEmit = (socket) => {
   const response = new Date();
