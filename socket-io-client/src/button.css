@@ -1,0 +1,9 @@
+.clickMe-container {
+  text-align: center;
+  font-size: 25px;
+}
+
+.click-button {
+  padding: 10px;
+  border-radius: 30px;
+}
