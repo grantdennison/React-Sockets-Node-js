@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import socketIOClient from "socket.io-client";
+import "./App.css";
 const ENDPOINT = "http://localhost:4001/";
 
-function App() {
+export default function App() {
   const [response, setResponse] = useState("");
 
   useEffect(() => {
@@ -13,10 +14,17 @@ function App() {
   }, []);
 
   return (
-    <p>
-      It's <time dateTime={response}>{response}</time>
-    </p>
+    <div className="timeDate-container">
+      <p>
+        <time className="date" dateTime={response}>
+          {response.slice(0, 10)}
+        </time>
+      </p>
+      <p>
+        <time className="time" dateTime={response}>
+          {response.slice(11, 19)}
+        </time>
+      </p>
+    </div>
   );
 }
-
-export default App;
